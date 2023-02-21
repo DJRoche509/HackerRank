@@ -29,3 +29,6 @@ In this program, the steps below are implemented as a solution:
       - Traverse from i+1 to N and find the point where petrol is greater than the distance to the next petrol pump.
     - Start from the new start point and continue the above procedure.
   - Start from 0 to the found start point. If the sum of the petrol is non-negative then the start point is feasible otherwise not.
+<br>
+
+![Screenshot 2023-02-20 10 58 35 PM](https://user-images.githubusercontent.com/100164051/220252953-a2283f24-3e72-49ca-94e9-d2bd66665556.png)
