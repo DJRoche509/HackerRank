@@ -1,0 +1,52 @@
+'''
+Implement the following problem in Python 3.
+Given "word", return the next alphabetically greater string in all permutations of that word. 
+If there is no greater permutation, return the string 'no answer' instead.
+Example: word = 'baca'
+The string 'baca' has the following permutations in alphabetical order 'aabc', 'aacb', 'abac', 
+'abca', 'acab', 'acba', 'baac', 'baca', 'bcaa', 'caab', 'caba', and 'cbaa'. The next alphabetically 
+greater permutation of the original string is 'bcaa'.
+Constraints: ALl characters in word are in the set of characters ascii(a-z).
+'''
+
+def next_permutation(word):
+    # Convert the input word to a list of characters
+    word_list = list(word)
+    
+    # Find the largest index i such that word[i] < word[i+1]
+    i = len(word_list) - 2
+    while i >= 0 and word_list[i] >= word_list[i+1]:
+        i -= 1
+    
+    # If no such index exists, the word is already the largest permutation
+    if i < 0:
+        return 'no answer'
+    
+    # Find the largest index j > i such that word[j] > word[i]
+    j = len(word_list) - 1
+    while j > i and word_list[j] <= word_list[i]:
+        j -= 1
+    
+    # Swap word[i] and word[j]
+    word_list[i], word_list[j] = word_list[j], word_list[i]
+    
+    # Reverse the suffix starting at index i+1
+    word_list[i+1:] = reversed(word_list[i+1:])
+    
+    # Convert the list back to a string and return it
+    return ''.join(word_list)
+
+
+print(next_permutation('baca'))
+# Expected output: 'bcaa'
+
+
+'''
+The time complexity for the above solution of this function is O(n), where n is the length of the input word. This is because 
+the function must iterate through the entire word to find the largest index i such that word[i] < word[i+1]. The function must 
+then iterate through the word again to find the largest index j > i such that word[j] > word[i]. Finally, the function must 
+reverse the suffix of the word starting at index i+1.
+
+The space complexity for the solution of this function is O(n), where n is the length of the input word. This is because the function 
+must create a list of the characters in the input word.
+'''
